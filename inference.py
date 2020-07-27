@@ -1124,7 +1124,7 @@ for q in tqdm(target, position= 0, leave = True):
         if len(q['tags'])!=10:
             submission[n]['tags'] += remove_seen(q['tags'], result_tag[n]['tags'])[:10-len(q['tags'])]  
 
-VAL_FINAL = os.path.join(VAL_PATH, 'result.json')
+VAL_FINAL = os.path.join(VAL_PATH, 'results.json')
 with open(VAL_FINAL, 'w', encoding='utf-8') as f:
     json.dump(submission, f, ensure_ascii = False)
 
@@ -1184,7 +1184,7 @@ for q in tqdm(target, position= 0, leave = True):
         if len(q['tags'])!=10:
             submission4[n]['tags'] += remove_seen(q['tags'], result_tag[n]['tags'])[:10-len(q['tags'])]  
 
-TEST_FINAL = os.path.join(TEST_PATH, 'result.json')
+TEST_FINAL = os.path.join(TEST_PATH, 'results.json')
 with open(TEST_FINAL, 'w', encoding='utf-8') as f:
     json.dump(submission4, f, ensure_ascii = False)
 
