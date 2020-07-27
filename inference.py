@@ -466,11 +466,11 @@ from implicit.als import AlternatingLeastSquares as ALS
 class baseline:
     def __init__(self):
         self.FILE_PATH = DATA_PATH
-        self.train_data  = pd.read_json(os.path.join(self.FILE_PATH,'train.json') , typ = 'frame')
-        self.test_data   = pd.read_json(os.path.join(self.FILE_PATH,'test.json') , typ = 'frame')
-        self.valid_data  = pd.read_json(os.path.join(self.FILE_PATH,'val.json'), typ = 'frame')
-        self.song_data   = pd.read_json(os.path.join(self.FILE_PATH, 'song_meta.json'), typ = 'frame')   
-        self.gga         = pd.read_json(os.path.join(self.FILE_PATH, 'genre_gn_all.json'), typ = 'series')
+        self.train_data  = pd.read_json(os.path.join(self.FILE_PATH,'train.json'), encoding='utf-8' , typ = 'frame')
+        self.test_data   = pd.read_json(os.path.join(self.FILE_PATH,'test.json'), encoding='utf-8' , typ = 'frame')
+        self.valid_data  = pd.read_json(os.path.join(self.FILE_PATH,'val.json'), encoding='utf-8', typ = 'frame')
+        self.song_data   = pd.read_json(os.path.join(self.FILE_PATH, 'song_meta.json'), encoding='utf-8', typ = 'frame')   
+        self.gga         = pd.read_json(os.path.join(self.FILE_PATH, 'genre_gn_all.json'), encoding='utf-8', typ = 'series')
 
         self.tags_before_2016 = ['CCM', 'JPOP',  'OST',  '가을', '겨울', '기분전환', '까페',
         '뉴에이지', '댄스', '드라이브', '락', '랩', '매장음악', '발라드', '밤', '봄',
@@ -864,7 +864,7 @@ for u in tqdm(range(n_test, n_val), position=0, leave=True):
 
     submission2.append({
     "id": val[u-n_test]["id"],
-    "songs": result_song1[u-n_test]["songs"],
+    "songs": result_song[u-n_test]["songs"],
     "tags":  remove_seen(val[u-n_test]['tags'] ,tag_ret)[:10]
     })
 
@@ -946,9 +946,9 @@ with open(os.path.join(FILE_PATH, 'val.json'), encoding="utf-8") as f:
 with open(os.path.join(FILE_PATH, 'song_meta.json'), encoding="utf-8") as f:
     song_meta = json.load(f)
 
-train_data  = pd.read_json(os.path.join(FILE_PATH,'train.json') , typ = 'frame')
-test_data   = pd.read_json(os.path.join(FILE_PATH,'test.json') , typ = 'frame')
-valid_data  = pd.read_json(os.path.join(FILE_PATH,'val.json'), typ = 'frame')
+train_data  = pd.read_json(os.path.join(FILE_PATH,'train.json'), encoding='utf-8' , typ = 'frame')
+test_data   = pd.read_json(os.path.join(FILE_PATH,'test.json'), encoding='utf-8' , typ = 'frame')
+valid_data  = pd.read_json(os.path.join(FILE_PATH,'val.json'), encoding='utf-8', typ = 'frame')
 
 new_data = pd.concat([train_data,test_data,valid_data])
 
