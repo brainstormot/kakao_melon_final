@@ -313,20 +313,6 @@ r
 als_model = ALS(factors=3072, regularization=0.08)
 als_model.fit(r.T*50.0)
 
-
-# In[17]:
-
-
-import pickle
-import gzip
-import _pickle as cPickle
-with gzip.open('./model/als_model-final-song-{}.gzip'.format(3072), 'wb') as f:
-        cPickle.dump(als_model, f, pickle.HIGHEST_PROTOCOL)
-
-
-# In[18]:
-
-
 #%% item model과 tag model 로 분리 
 song_model = ALS()
 # tag_model = ALS()
